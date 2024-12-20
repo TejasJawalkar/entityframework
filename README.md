@@ -1,3 +1,4 @@
-Created Project that will demonstrate how to use entity framework and it's fundamentals 
-Used migration technique to sync the database 
-Demonstration of repository design pattern
+Created Project that will demonstrate how to use entity framework and it's fundamentals.
+Used migration technique to sync the database. 
+Demonstration of repository design pattern.
+Included Database Backup in data folder.
