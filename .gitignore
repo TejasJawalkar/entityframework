@@ -5,3 +5,6 @@
 /WebApplication1/obj
 /WebApplication1/bin/Debug/net6.0
 /.vs
+/entityframeworkdemonstration/.vs
+/entityframeworkdemonstration/WebApplication1/bin/Debug/net6.0
+/entityframeworkdemonstration/WebApplication1/obj
