@@ -40,9 +40,9 @@ using (var context=new Context())
   #endregion
 
   #region Delete Employee
-  var delemployeedata = context.Employees.Single(e => e.E_Id == 1);
-  context.Employees.Remove(delemployeedata);
-  context.SaveChanges();
+  //var delemployeedata = context.Employees.Single(e => e.E_Id == 1);
+  //context.Employees.Remove(delemployeedata);
+  //context.SaveChanges();
   #endregion
   #endregion
 
@@ -78,7 +78,7 @@ using (var context=new Context())
   //context.SaveChanges();
   #endregion
 
-  Console.WriteLine("Press Any Key to Exit...");
-  Console.ReadKey();
+  //Console.WriteLine("Press Any Key to Exit...");
+  //Console.ReadKey();
 }
 #endregion
