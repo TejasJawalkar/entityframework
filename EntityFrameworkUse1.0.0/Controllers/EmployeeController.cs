@@ -1,9 +1,7 @@
 ﻿using EntityFrameworkUse1._0._0.Data;
 using EntityFrameworkUse1._0._0.module;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using System.Net;
-
 namespace EntityFrameworkUse1._0._0.Controllers
 {
     public class EmployeeController : Controller
@@ -173,6 +171,55 @@ namespace EntityFrameworkUse1._0._0.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Internal Server Error" });
+            }
+        }
+
+        [HttpPost]
+        [Route("Manager/AddProject")]
+        public IActionResult AddProjects([FromForm] string ProjectName)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(ProjectName))
+                {
+                    return BadRequest(new { message = "Project Name Required" });
+                }
+                var project = new Projects
+                {
+                    PrjectName = ProjectName
+                };
+                _context.Projects.Add(project);
+                _context.SaveChanges();
+                return Ok(new { message = "Project Added" });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500,new {message="Internal Server Error"});
+            }
+        }
+
+        [HttpPost]
+        [Route("Manager/AssignProjectToEmployee")]
+        public IActionResult AssignProjectToEmployee([FromForm] Int64 E_Id, [FromForm] Int64 Project_Id )
+        {
+            try
+            {
+                if ((E_Id == 0) || (Project_Id == 0))
+                {
+                    return BadRequest(new { message = "Select Project Or Eployee" });
+                }
+                var employeeProject = new EmployeeProject
+                {
+                    E_Id = E_Id,
+                    Projects_Id = Project_Id,
+                };
+                _context.EmployeeProjects.Add(employeeProject);
+                _context.SaveChanges();
+                return Ok( new {message="Project Assigne to employee" });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500,new { message="Internal Server Error"});
             }
         }
     }
