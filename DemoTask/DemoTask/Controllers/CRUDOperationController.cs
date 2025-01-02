@@ -16,7 +16,7 @@ namespace DemoTask.Controllers
 
     [HttpGet]
     [Route("GetAllData")]
-    [Route("/")]
+    
     [AllowAnonymous]
     public async Task<IActionResult> GetAllData()
     {

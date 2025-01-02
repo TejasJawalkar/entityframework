@@ -12,7 +12,7 @@ builder.Services.AddOptions();
 builder.Services.AddHttpContextAccessor();
 DipendencyInversion.Injector(builder.Services);
 
-var connectionstring = "Data Source=DESKTOP-AD72JDE;Initial Catalog=DemoTaskDatabase;Integrated Security=True;Trust Server Certificate=True";
+var connectionstring = builder.Configuration.GetConnectionString("ConnectionString");
 builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(connectionstring));
 
 builder.Services.AddControllers();

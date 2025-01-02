@@ -1,6 +1,7 @@
 ﻿using EntityFrameworkUse1._0._0.Data;
 using EntityFrameworkUse1._0._0.module;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 namespace EntityFrameworkUse1._0._0.Controllers
 {
     public class EmployeeController : Controller
@@ -9,7 +10,7 @@ namespace EntityFrameworkUse1._0._0.Controllers
         private readonly ApplicationContext _context;
         #endregion
 
-        #region Object Assigning
+        #region Constructor
         public EmployeeController(ApplicationContext context)
         {
             _context = context;
@@ -112,6 +113,20 @@ namespace EntityFrameworkUse1._0._0.Controllers
                             p.Project_Id,
                             p.PrjectName
                         }).ToList();
+            return Json(data);
+        }
+
+        [HttpGet]
+        [Route("Employee/TopTwoSalaries")]
+        public IActionResult GetTopTwoSalaries()
+        {
+            var data = _context.Employees.OrderByDescending(e => e.Salary).Take(2).Select(e => new
+            {
+                e.E_Id,
+                e.E_F_Name,
+                e.E_L_Name,
+                e.Salary,
+            }).ToList();
             return Json(data);
         }
         #endregion
@@ -247,24 +262,28 @@ namespace EntityFrameworkUse1._0._0.Controllers
                 {
                     return StatusCode(404, new { message = "Employee Following Id Not Found" });
                 }
-                var existing1 = _context.Employees.Where(s => s.E_Id == E_Id).FirstOrDefault<Employee>();
-                var existing2 = _context.EployeeDetails.Where(s => s.E_Id == E_Id).FirstOrDefault<EployeeDetails>();
+                var existing1 = (from e in _context.Employees
+                                 join ed in _context.EployeeDetails
+                                 on e.E_Id equals ed.E_Id
+                                 where e.E_Id==E_Id
+                                 select new{
+                                     Employee=e,
+                                     EployeeDetails= ed
+                                 }).FirstOrDefault();
+                
 
                 if (existing1 != null)
                 {
-                    existing1.E_F_Name = E_F_Name;
-                    existing1.E_L_Name = E_L_Name;
-                    existing1.Salary = Salary;
-                    existing1.M_Id = M_Id;
+                    existing1.Employee.E_F_Name = E_F_Name;
+                    existing1.Employee.E_L_Name = E_L_Name;
+                    existing1.Employee.Salary = Salary;
+                    existing1.Employee.M_Id = M_Id;
+                    existing1.EployeeDetails.Email = E_Email;
+                    existing1.EployeeDetails.MobileNo = E_MobileNo;
+                    existing1.EployeeDetails.Address = E_Address;
+                    
+                    _context.SaveChanges();
                 }
-
-                if (existing2 != null)
-                {
-                    existing2.Email = E_Email;
-                    existing2.MobileNo = E_MobileNo;
-                    existing2.Address = E_Address;
-                }
-                _context.SaveChanges();
 
                 return Ok(new { message = "Employee Updated" });
             }
