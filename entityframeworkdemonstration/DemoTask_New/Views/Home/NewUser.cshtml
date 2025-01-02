@@ -1,0 +1,62 @@
+﻿@model DemoTask_New.Models.Entity.DataEntityClass
+
+<div class="container text-center">
+    <form method="post" action="@Url.Action("Create","Home")">
+        <div>
+            <label>First Name</label>
+            <input asp-for="First_Name" type="text" />
+            <span asp-validation-for="First_Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Last Name</label>
+            <input asp-for="Last_Name" type="text" />
+            <span asp-validation-for="Last_Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Date of Birth</label>
+            <input asp-for="DateofBirth" type="date" />
+            <span asp-validation-for="DateofBirth" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label>Gender</label><br />
+            <input type="radio" asp-for="Gender" value="Male" id="Male" />
+            <label for="Male">Male</label>
+
+            <input type="radio" asp-for="Gender" value="Female" id="Female" />
+            <label for="Female">Female</label>
+
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Gender</label>
+            <select asp-for="Country">
+                <option value="">Select</option>
+                <option value="India">India</option>
+                <option value="US">US</option>
+                <option value="UK">UK</option>
+            </select>
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Phone_No</label>
+            <input asp-for="Phone_No" type="text" />
+            <span asp-validation-for="Phone_No" class="text-danger"></span>
+        </div>
+        <div>
+            <label>Email</label>
+            <input asp-for="Email" type="text" />
+            <Br />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div>
+            <input type="submit" value="Save" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

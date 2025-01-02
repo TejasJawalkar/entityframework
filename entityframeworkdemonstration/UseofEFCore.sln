@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkUse1.0.0", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoTask", "..\DemoTask\DemoTask\DemoTask.csproj", "{862ABD2B-2DFB-405B-8803-80010FE9E777}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoTask_New", "DemoTask_New\DemoTask_New.csproj", "{DBEF9E66-EE3D-466E-BFDC-860990EA60DF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{862ABD2B-2DFB-405B-8803-80010FE9E777}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{862ABD2B-2DFB-405B-8803-80010FE9E777}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{862ABD2B-2DFB-405B-8803-80010FE9E777}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBEF9E66-EE3D-466E-BFDC-860990EA60DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBEF9E66-EE3D-466E-BFDC-860990EA60DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBEF9E66-EE3D-466E-BFDC-860990EA60DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBEF9E66-EE3D-466E-BFDC-860990EA60DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

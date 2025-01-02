@@ -1,0 +1,42 @@
+﻿@model List<DemoTask_New.Models.Entity.DataEntityClass>
+
+<div class="container ">
+    <div class="p-2 text-end">
+        <a class="btn btn-outline-primary" asp-area="" asp-controller="Home" asp-action="NewUser">Create New User +</a>
+    </div>
+    <div class="container-fluid text-center">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Email</td>
+                    <td>Date of Birth</td>
+                    <td>Mobile</td>
+                    <td>Gender</td>
+                    <td>Country</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td>@item.First_Name</td>
+                        <td>@item.Last_Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.DateofBirth.ToString("dd-MM-yyyy")</td>
+                        <td>@item.Phone_No</td>
+                        <td>@item.Gender</td>
+                        <td>@item.Country</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
